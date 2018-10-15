@@ -45,7 +45,6 @@ public class ExampleRestController {
 		// Use xs security lib to read user id and tenant id from security context
 		try {
 			helloMessage.append(userInfo.getLogonName());
-			helloMessage.append("\n");
 
 			helloMessage.append("; your tenant sub-domain is ");
 			String subdomain = userInfo.getSubdomain();

@@ -5,7 +5,6 @@ import static org.springframework.http.HttpMethod.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.access.AccessDecisionManager;
@@ -25,40 +24,24 @@ import com.sap.xs2.security.commons.SAPOfflineTokenServicesCloud;
 @Configuration
 @EnableWebSecurity
 @EnableResourceServer
-public class WebSecurityConfig extends ResourceServerConfigurerAdapter{
-
-	@Value("${VCAP_SERVICES}")
-	private String vcap;
-	private String xsappname;
-	// = "sampleapplication!t2160"; //Hard coded for now
-
+public class WebSecurityConfig extends ResourceServerConfigurerAdapter {
 
 	@Override
 	public void configure(HttpSecurity http) throws Exception {
-		// Callback scope needed for tenant onboarding to access callbacks
-				// String callbackScope = xsappname + ".Callback";
-				// JSONObject vcap_object = new JSONObject(vcap);
-				// JSONArray xs = vcap_object.getJSONArray("xsuaa");
-				// xsappname = JsonPath.read(vcap, "$.xsuaa[0].credentials.xsappname");// xs.getJSONObject(0).getJSONObject("credentials").getString("xsappname");
-				// // User scope, used to access app
-				// String userScope = xsappname + ".User";
 
-				// String hasScopeCallback = "#oauth2.hasScope('" + callbackScope + "')";
-				// String hasScopeUser = "#oauth2.hasScope('" + userScope + "')";
-
-				// @formatter:off
-				http.sessionManagement()
-						// session is created by approuter
-						.sessionCreationPolicy(SessionCreationPolicy.NEVER).and()
-						// demand authentication
-						.anonymous().disable()
-						// demand specific scopes depending on intended request
-						.authorizeRequests()
-						// enable OAuth2 checks
-						.accessDecisionManager(accessDecisionManagerBean())
-						.antMatchers(GET, "/").permitAll()
-						.antMatchers(GET, "/test").permitAll()
-						.anyRequest().denyAll(); // deny;
+		// @formatter:off
+	http.sessionManagement()
+		// session is created by approuter
+		.sessionCreationPolicy(SessionCreationPolicy.NEVER).and()
+		// demand authentication
+		.anonymous().disable()
+		// demand specific scopes depending on intended request
+		.authorizeRequests()
+		// enable OAuth2 checks
+		.accessDecisionManager(accessDecisionManagerBean())
+		.antMatchers(GET, "/").permitAll()
+		.antMatchers(GET, "/test").permitAll()
+		.anyRequest().denyAll(); // deny;
 	}
 
 	@Bean
