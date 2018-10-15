@@ -1,0 +1,24 @@
+---
+applications:
+- name: mt-hw-spring-app
+  memory: 1G
+  path: target/sample-0.0.1.jar
+  buildpack: sap_java_buildpack
+  services:
+    - uaa-mt-hw-app-del
+
+- name: mt-hw-spring-ar-app
+  path: approuter
+  buildpack: nodejs_buildpack
+  memory: 256M
+  env:
+    destinations: >
+      [
+        {
+          "name":"dest-mt-hw-approuter-app-temp",
+          "url":"https://mt-hw-spring-app.cfapps.eu10.hana.ondemand.com",
+          "forwardAuthToken": true
+         }
+      ]
+  services:
+    - uaa-mt-hw-app-del
