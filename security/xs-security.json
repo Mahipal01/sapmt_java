@@ -1,4 +1,4 @@
 {
-   "xsappname":"sampleapplication",
-   "tenant-mode":"dedicated"
+   "xsappname":"springsample",
+   "tenant-mode":"shared"
 }

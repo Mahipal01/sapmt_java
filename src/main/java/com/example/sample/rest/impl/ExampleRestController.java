@@ -32,7 +32,7 @@ public class ExampleRestController {
 
 	@GetMapping(path = "/test", produces = { "text/html" })
 	public String test() {
-		return "Test Rest Endpoint";
+		return "Mahipal's Code - Test Rest Endpoint";
 	}
 
 	private String buildHelloMessage(Optional<UserInfo> userInfo) {
@@ -68,4 +68,5 @@ public class ExampleRestController {
 		}
 		return Optional.ofNullable(userInfo);
 	}
+
 }

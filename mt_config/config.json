@@ -1,0 +1,9 @@
+{
+	"appId": "springsample!t2160",
+	"displayName": "Hello World1",
+	"description": "A sample hello world app to explain the concepts of Multitenancy",
+	"category": "Provider sss",
+	"appUrls": {
+		"onSubscription": "https://mt-hw-spring-app.cfapps.eu10.hana.ondemand.com/callback/v1.0/tenants/{tenantId}"
+	}
+}

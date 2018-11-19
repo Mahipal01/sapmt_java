@@ -4,14 +4,17 @@ applications:
   memory: 1G
   path: target/sample-0.0.1.jar
   buildpack: sap_java_buildpack
+  env:
+    SAP_JWT_TRUST_ACL: "[{\"clientid\":\"*\",\"identityzone\":\"*\"}]"
   services:
-    - uaa-mt-hw-app-del
+    - uaa-mt-hw-spr
 
 - name: mt-hw-spring-ar-app
   path: approuter
   buildpack: nodejs_buildpack
   memory: 256M
   env:
+    TENANT_HOST_PATTERN: "^(.*)-mt-hw-spring-ar-app.cfapps.eu10.hana.ondemand.com"
     destinations: >
       [
         {
@@ -21,4 +24,4 @@ applications:
          }
       ]
   services:
-    - uaa-mt-hw-app-del
+    - uaa-mt-hw-spr

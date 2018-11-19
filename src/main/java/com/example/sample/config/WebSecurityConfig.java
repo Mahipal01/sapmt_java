@@ -41,6 +41,9 @@ public class WebSecurityConfig extends ResourceServerConfigurerAdapter {
 		.accessDecisionManager(accessDecisionManagerBean())
 		.antMatchers(GET, "/").permitAll()
 		.antMatchers(GET, "/test").permitAll()
+		.antMatchers(PUT, "/callback/v1.0/tenants*//**").permitAll()
+		.antMatchers(GET, "/callback/v1.0/dependencies*//**").permitAll()
+		.antMatchers(DELETE, "/callback/v1.0/tenants*//**").permitAll()
 		.anyRequest().denyAll(); // deny;
 	}
 
